@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>إبراهيم فتحي | الخبير التقني المتقدم</title>
+
+    <!-- AOS Library for Premium Scroll Animations -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <!-- Three.js WebGL Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+    <link rel="stylesheet" href="styles.css?v=5.0">
+    <!-- Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Outfit:wght@300;400;600;700;900&display=swap"
+        rel="stylesheet">
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body class="dark-mode">
+
+    <!-- ULTRA-PREMIUM 3D WEBGL BACKGROUND CANVAS -->
+    <canvas id="webgl-background"
+        style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -10;"></canvas>
+
+    <!-- PREMIUM WELCOME MODAL -->
+    <div id="welcome-modal" class="premium-welcome-overlay">
+        <div class="premium-welcome-content">
+            <div class="welcome-icon-wrapper">
+                <i class="fa-solid fa-fingerprint"></i>
+            </div>
+            <h2 class="welcome-title">IBRAHIM FATHY</h2>
+            <p class="welcome-subtitle">مرحباً بك في عالمي الرقمي الخاص</p>
+            <div class="welcome-loader">
+                <div class="welcome-loader-line"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Glowing Background Orbs (Modern Aesthetic) -->
+    <div class="glow-orb orb-1"></div>
+    <div class="glow-orb orb-2"></div>
+    <div class="glow-orb orb-3"></div>
+
+    <!-- Floating Smart Action Menu (FAB) & AI Chatbot -->
+    <div class="fab-wrapper" data-aos="zoom-in" data-aos-delay="1000">
+        <div class="fab-menu" id="fab-menu">
+            <a href="https://wa.me/201202060839" target="_blank" class="fab-item whatsapp-item"
+                title="تواصل عبر واتساب">
+                <i class="fa-brands fa-whatsapp"></i>
+            </a>
+            <button class="fab-item ai-item" id="open-ai-chat" title="اسأل المساعد الذكي">
+                <i class="fa-solid fa-robot"></i>
+            </button>
+        </div>
+        <button class="fab-main" id="fab-main" title="تواصل معي">
+            <i class="fa-solid fa-comment-dots main-icon"></i>
+            <i class="fa-solid fa-xmark close-icon"></i>
+        </button>
+    </div>
+
+    <!-- Smart AI Chatbot Window -->
+    <div class="ai-chat-window" id="ai-chat-window">
+        <div class="ai-chat-header">
+            <div class="ai-bot-info">
+                <div class="ai-avatar-glow"><i class="fa-solid fa-robot"></i></div>
+                <div>
+                    <h4>Hema-AI Assistant</h4>
+                    <span>متصل الآن ✨</span>
+                </div>
+            </div>
+            <button id="close-ai-chat" title="إغلاق"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <div class="ai-chat-messages" id="ai-chat-messages">
+            <div class="ai-message bot">
+                <p>أهلاً بك! أنا المساعد الذكي الخاص بالمهندس إبراهيم فتحي. 🤖<br>يمكنك سؤالي عن مهاراته، أعماله، أو
+                    كيفية التواصل معه!</p>
+            </div>
+        </div>
+        <div class="ai-chat-input">
+            <input type="text" id="ai-input" placeholder="اكتب سؤالك هنا... (مثال: ماذا يصمم إبراهيم؟)"
+                autocomplete="off">
+            <button id="ai-send" title="إرسال"><i class="fa-solid fa-paper-plane"></i></button>
+        </div>
+    </div>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar" data-aos="fade-down" data-aos-duration="1000">
+        <div class="nav-container">
+            <a href="#" class="nav-logo">
+                <i class="fa-solid fa-microchip"></i> <span>Ibrahim Fathy</span>
+            </a>
+            <div class="nav-links" id="nav-links">
+                <a href="#hero" class="nav-link-item">الرئيسية</a>
+                <a href="#about" class="nav-link-item">عني</a>
+                <a href="#specializations" class="nav-link-item">تخصصاتي</a>
+                <a href="#app-download" class="nav-link-item">تحميل التطبيق</a>
+                <a href="#contact" class="nav-link-item">التواصل</a>
+            </div>
+            <div class="nav-actions">
+                <button id="theme-toggle" class="theme-btn" title="تبديل الوضع (فاتح/داكن)">
+                    <i class="fa-solid fa-moon"></i>
+                </button>
+                <button id="mobile-menu-btn" class="menu-btn" title="القائمة الرئيسية">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero" class="hero-section">
+        <div class="hero-content" data-aos="fade-up" data-aos-duration="1500">
+
+            <div class="hero-avatar-wrapper tilt-effect" data-aos="zoom-in" data-aos-duration="1200">
+                <div class="hero-avatar-glow"></div>
+                <img src="https://i.ibb.co/TDs1TqZB/image.jpg" alt="Eng. Ibrahim Fathy" class="hero-avatar">
+            </div>
+
+            <div class="hero-badge">مرحباً بك في عالمي الرقمي الخاص 🚀</div>
+            <h1 class="hero-title name-gradient-pro" data-aos="zoom-in" data-aos-duration="2000"><span
+                    id="name-typewriter"></span><span class="cursor">|</span></h1>
+            <h2 class="hero-subtitle">متخصص في <span id="typewriter-txt" class="text-orange"></span><span
+                    class="cursor">|</span></h2>
+            <p class="hero-desc">
+                لست مجرد مبرمج، أنا مهندس للحلول الرقمية الآمنة. أدمج بين جمال التصميم، قوة الذكاء الاصطناعي (AI)،
+                وصلابة الأمن السيبراني لأبني لك أنظمة تسبق عصرها.
+            </p>
+            <div class="hero-actions">
+                <a href="#contact" class="btn btn-primary" data-aos="fade-up" data-aos-delay="300">
+                    <i class="fa-solid fa-rocket"></i> ابدأ مشروعك معي
+                </a>
+                <a href="#specializations" class="btn btn-outline" data-aos="fade-up" data-aos-delay="400">
+                    <i class="fa-solid fa-bolt"></i> قدراتي الفائقة
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about-section">
+        <div class="container">
+            <div class="section-header text-center" data-aos="fade-up">
+                <h2>نظرة عن <span>قرب</span></h2>
+                <div class="header-line"></div>
+            </div>
+            <div class="about-grid">
+                <div class="about-text" data-aos="fade-left" data-aos-duration="1000">
+                    <h3>صانع المستقبل الرقمي</h3>
+                    <p>منذ سنوات وأنا أغوص في أعماق الأكواد وتأمين السيرفرات. لا أصمم المواقع لتكون مجرد واجهة، بل
+                        أبنيها كحصون منيعة مزودة بعقول ذكية (AI) قادرة على أتمتة الأعمال ورفع الكفاءة إلى أقصى حد ممكن.
+                    </p>
+
+                    <div class="about-info-cards">
+                        <div class="info-card" data-aos="flip-up" data-aos-delay="100">
+                            <i class="fa-solid fa-earth-africa"></i>
+                            <div>
+                                <h4>المقر</h4>
+                                <span>مصر (متاح للعمل عن بعد)</span>
+                            </div>
+                        </div>
+                        <div class="info-card" data-aos="flip-up" data-aos-delay="200">
+                            <i class="fa-solid fa-phone-volume"></i>
+                            <div>
+                                <h4>هاتف مباشر</h4>
+                                <span>01093922945</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-image-wrapper tilt-effect" data-aos="fade-right" data-aos-duration="1200">
+                    <img src="https://i.ibb.co/TDs1TqZB/image.jpg" alt="Eng. Ibrahim Fathy" class="about-img">
+                    <div class="img-glow-overlay"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Specializations Section -->
+    <section id="specializations" class="spec-section">
+        <div class="container">
+            <div class="section-header text-center" data-aos="zoom-in">
+                <h2>ترسانة <span>التقنيات والمهارات</span></h2>
+                <div class="header-line"></div>
+                <p class="section-sub">مهندس برمجيات وخبير أمن سيبراني وصانع حلول متكاملة</p>
+            </div>
+
+            <div class="spec-grid">
+
+                <!-- Card 1: Web & Premium UI -->
+                <div class="spec-card tilt-effect" data-aos="fade-up" data-aos-delay="100"
+                    style="background-image: url('https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=600');">
+                    <div class="spec-overlay"></div>
+                    <div class="spec-content">
+                        <i class="fa-solid fa-code spec-icon"></i>
+                        <h3>تطوير الويب وواجهات المستخدم</h3>
+                        <p>تصميم مواقع سيرة ذاتية (CV) ومواقع تفاعلية عصرية بمؤثرات حركة (Animations) تخطف الأبصار
+                            بالاعتماد على TypeScript و CSS حديث.</p>
+                    </div>
+                </div>
+
+                <!-- Card 2: Mobile Dev -->
+                <div class="spec-card tilt-effect" data-aos="fade-up" data-aos-delay="200"
+                    style="background-image: url('https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?q=80&w=600');">
+                    <div class="spec-overlay"></div>
+                    <div class="spec-content">
+                        <i class="fa-solid fa-mobile-screen-button spec-icon"></i>
+                        <h3>تطوير تطبيقات الموبايل</h3>
+                        <p>تصميم وبرمجة تطبيقات الهواتف الذكية لأنظمة أندرويد (Android) و iOS بأحدث التقنيات وأداء فائق
+                            النعومة.</p>
+                    </div>
+                </div>
+
+                <!-- Card 3: Windows & SaaS -->
+                <div class="spec-card tilt-effect" data-aos="fade-up" data-aos-delay="300"
+                    style="background-image: url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=600');">
+                    <div class="spec-overlay"></div>
+                    <div class="spec-content">
+                        <i class="fa-solid fa-window-restore spec-icon"></i>
+                        <h3>برمجيات Windows و SaaS</h3>
+                        <p>تطوير برامج محاسبية وإدارية لسطح المكتب باستخدام C# و Python، وبناء منصات خدمة برمجية (SaaS)
+                            بواجهات متحركة فائقة الجاذبية.</p>
+                    </div>
+                </div>
+
+                <!-- Card 4: AI & APIs -->
+                <div class="spec-card tilt-effect" data-aos="fade-up" data-aos-delay="400"
+                    style="background-image: url('https://images.unsplash.com/photo-1677442136019-21780ecad995?q=80&w=600');">
+                    <div class="spec-overlay"></div>
+                    <div class="spec-content">
+                        <i class="fa-solid fa-brain spec-icon"></i>
+                        <h3>الذكاء الاصطناعي ودمج الـ APIs</h3>
+                        <p>دمج الذكاء الاصطناعي وبناء شات بوت ذكي، أدوات تحليل ملفات PDF وصناعة الصور، وتطوير وكلاء
+                            أذكياء (AI Agents).</p>
+                    </div>
+                </div>
+
+                <!-- Card 5: Malware Lab & Cyber Security -->
+                <div class="spec-card tilt-effect" data-aos="fade-up" data-aos-delay="500"
+                    style="background-image: url('https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?q=80&w=600');">
+                    <div class="spec-overlay"></div>
+                    <div class="spec-content">
+                        <i class="fa-solid fa-shield-halved spec-icon"></i>
+                        <h3>الأمن السيبراني ومختبر البرمجيات الضارة</h3>
+                        <p>تحليل وتطوير البرمجيات الضارة (بحرص شديد في بيئات معزولة)، اختبار الاختراق وسد الثغرات،
+                            والتبليغ المسؤول عن نقاط الضعف.</p>
+                    </div>
+                </div>
+
+                <!-- Card 6: Intelligent Automation -->
+                <div class="spec-card tilt-effect" data-aos="fade-up" data-aos-delay="600"
+                    style="background-image: url('https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=600');">
+                    <div class="spec-overlay"></div>
+                    <div class="spec-content">
+                        <i class="fa-solid fa-gears spec-icon"></i>
+                        <h3>أنظمة وأدوات الأتمتة</h3>
+                        <p>برمجة وتصميم سكربتات وحلول أتمتة ذكية وغير تقليدية لتوفير المجهود وتسريع العمليات المعقدة
+                            بالكامل.</p>
+                    </div>
+                </div>
+
+                <!-- Card 7: Advanced UI/UX Details -->
+                <div class="spec-card tilt-effect" data-aos="fade-up" data-aos-delay="700"
+                    style="background-image: url('https://images.unsplash.com/photo-1561070791-26c113006238?q=80&w=600');">
+                    <div class="spec-overlay"></div>
+                    <div class="spec-content">
+                        <i class="fa-solid fa-palette spec-icon"></i>
+                        <h3>تصميم وتجربة المستخدم UX/UI</h3>
+                        <p>اهتمام بالغ بالتفاصيل البصرية، وتقديم منتج نهائي يتميز بالفخامة والانسيابية والاحترافية
+                            الفنية.</p>
+                    </div>
+                </div>
+
+                <!-- Card 8: Enterprise HR & Advanced Excel -->
+                <div class="spec-card tilt-effect" data-aos="fade-up" data-aos-delay="800"
+                    style="background-image: url('https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=600');">
+                    <div class="spec-overlay"></div>
+                    <div class="spec-content">
+                        <i class="fa-solid fa-file-excel spec-icon"></i>
+                        <h3>الأنظمة الإدارية HR & Excel</h3>
+                        <p>تصميم وإدارة أنظمة الموارد البشرية (HR)، وصياغة أدوات وقواعد بيانات عملية وحلول متقدمة
+                            باستخدام Excel.</p>
+                    </div>
+                </div>
+
+                <!-- Card 9: Android Custom & ADB Control -->
+                <div class="spec-card tilt-effect" data-aos="fade-up" data-aos-delay="900"
+                    style="background-image: url('https://images.unsplash.com/photo-1600132806370-bf17e65e942f?q=80&w=600');">
+                    <div class="spec-overlay"></div>
+                    <div class="spec-content">
+                        <i class="fa-solid fa-terminal spec-icon"></i>
+                        <h3>تحكم الأجهزة وبرمجة ADB أندرويد</h3>
+                        <p>تجارب تقنية عميقة للتحكم بالأجهزة والأنظمة عن بعد، أتمتة اختبارات الـ ADB، وحلول الربط
+                            البرمجي الداخلي للعتاد.</p>
+                    </div>
+                </div>
+
+                <!-- Card 10: Digital Content Creation -->
+                <div class="spec-card tilt-effect" data-aos="fade-up" data-aos-delay="1000"
+                    style="background-image: url('https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?q=80&w=600');">
+                    <div class="spec-overlay"></div>
+                    <div class="spec-content">
+                        <i class="fa-solid fa-clapperboard spec-icon"></i>
+                        <h3>صناعة المحتوى والتعليم التقني</h3>
+                        <p>تقديم الشروحات ونشر الفائدة العلمية عبر اليوتيوب والمحتوى التعليمي لتبسيط المفاهيم البرمجية
+                            والأمنية.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- App Download Section -->
+    <section id="app-download" class="app-download-section">
+        <div class="container">
+            <div class="section-header text-center" data-aos="zoom-in">
+                <h2>تطبيق <span>المهندس الذكي</span></h2>
+                <div class="header-line"></div>
+                <p class="section-sub">حمل التطبيق الخاص بي وتواصل معي بشكل أسرع (Android & iOS)</p>
+            </div>
+
+            <div class="store-mockups-grid">
+                
+                <!-- Google Play Mockup -->
+                <div class="store-mockup android-store" data-aos="fade-left" data-aos-duration="1000">
+                    <div class="store-header">
+                        <i class="fa-solid fa-arrow-right"></i>
+                        <div class="store-actions">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                            <i class="fa-solid fa-ellipsis-vertical"></i>
+                        </div>
+                    </div>
+                    <div class="store-app-info">
+                        <img src="https://i.ibb.co/pBVmDM4z/app-icon-zoomed.png" alt="App Icon" class="store-app-icon" onerror="this.src='https://ui-avatars.com/api/?name=I+F&background=FF6600&color=fff&rounded=true'">
+                        <div class="store-app-details">
+                            <h3>ENG/IBRAHIM FATHY</h3>
+                            <span class="developer-name">Ibrahim Fathy Studio</span>
+                            <span class="in-app-purchases">إمكانية الشراء داخل التطبيق</span>
+                        </div>
+                    </div>
+                    <div class="store-stats">
+                        <div class="stat-col">
+                            <strong>4.8 ★</strong>
+                            <span>7 آلاف مراجعة</span>
+                        </div>
+                        <div class="stat-divider"></div>
+                        <div class="stat-col">
+                            <strong>1+ مليون</strong>
+                            <span>عمليات تنزيل</span>
+                        </div>
+                        <div class="stat-divider"></div>
+                        <div class="stat-col">
+                            <div class="age-badge">M</div>
+                            <span>البالغون 17+</span>
+                        </div>
+                    </div>
+                    <a href="app-release.apk" download class="store-install-btn android-btn">تثبيت <i class="fa-brands fa-android"></i></a>
+                    
+                    <div class="store-screenshots">
+                        <img src="https://i.ibb.co/k2WKHk8S/Screenshot-1.png" alt="Screenshot 1" class="screenshot-box">
+                        <img src="https://i.ibb.co/CsMZ4b42/Screenshot-2.png" alt="Screenshot 2" class="screenshot-box">
+                        <img src="https://i.ibb.co/4g8GzWxD/Screenshot-3.png" alt="Screenshot 3" class="screenshot-box">
+                        <img src="https://i.ibb.co/qYqF21Gg/Screenshot-4.png" alt="Screenshot 4" class="screenshot-box">
+                    </div>
+
+                    <div class="store-about">
+                        <div class="about-header">
+                            <h4>لمحة عن هذا التطبيق</h4>
+                            <i class="fa-solid fa-arrow-left"></i>
+                        </div>
+                        <p>تطبيق المهندس الذكي - خفيف، سريع، ويحتوي على أحدث الخدمات والتقنيات مع مساعد ذكي مدمج.</p>
+                    </div>
+                </div>
+
+                <!-- App Store Mockup -->
+                <div class="store-mockup ios-store" data-aos="fade-right" data-aos-duration="1000" data-aos-delay="200">
+                    <div class="ios-header">
+                        <i class="fa-solid fa-chevron-right"></i>
+                        <span>البحث</span>
+                    </div>
+                    <div class="store-app-info">
+                        <img src="https://i.ibb.co/pBVmDM4z/app-icon-zoomed.png" alt="App Icon" class="store-app-icon ios-icon" onerror="this.src='https://ui-avatars.com/api/?name=I+F&background=000&color=fff&rounded=true'">
+                        <div class="store-app-details">
+                            <h3>ENG/IBRAHIM FATHY</h3>
+                            <span class="developer-name">Ibrahim Fathy</span>
+                            <span class="in-app-purchases">Professional Services</span>
+                        </div>
+                    </div>
+                    
+                    <div class="ios-actions">
+                        <a href="cyber_cv_unsigned.ipa" download class="store-install-btn ios-btn"><i class="fa-brands fa-apple"></i> GET</a>
+                        <i class="fa-solid fa-share-nodes ios-share"></i>
+                    </div>
+
+                    <div class="store-stats ios-stats">
+                        <div class="stat-col">
+                            <span>4.8</span>
+                            <strong>★★★★★</strong>
+                        </div>
+                        <div class="stat-divider"></div>
+                        <div class="stat-col">
+                            <span>AGE</span>
+                            <strong>12+</strong>
+                        </div>
+                        <div class="stat-divider"></div>
+                        <div class="stat-col">
+                            <span>CHART</span>
+                            <strong>#1</strong>
+                        </div>
+                    </div>
+
+                    <div class="store-screenshots">
+                        <img src="https://i.ibb.co/k2WKHk8S/Screenshot-1.png" alt="Screenshot 1" class="screenshot-box ios-style">
+                        <img src="https://i.ibb.co/CsMZ4b42/Screenshot-2.png" alt="Screenshot 2" class="screenshot-box ios-style">
+                        <img src="https://i.ibb.co/4g8GzWxD/Screenshot-3.png" alt="Screenshot 3" class="screenshot-box ios-style">
+                        <img src="https://i.ibb.co/qYqF21Gg/Screenshot-4.png" alt="Screenshot 4" class="screenshot-box ios-style">
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact & Social Section -->
+    <section id="contact" class="contact-section">
+        <div class="container">
+            <div class="contact-card glass-panel" data-aos="zoom-in-up" data-aos-duration="1000">
+                <div class="contact-grid">
+
+                    <div class="contact-info">
+                        <h2>هل أنت مستعد <span>للانطلاق؟</span></h2>
+                        <p>دعنا نحول فكرتك إلى واقع تقني مذهل ومحصن. يمكنك الوصول إلي فوراً عبر هذه القنوات:</p>
+
+                        <div class="social-networks">
+                            <a href="https://wa.me/201202060839" target="_blank" class="social-btn whatsapp"
+                                data-aos="fade-left" data-aos-delay="100">
+                                <i class="fa-brands fa-whatsapp"></i>
+                                <span>01202060839</span>
+                            </a>
+                            <a href="tel:01093922945" class="social-btn phone" data-aos="fade-left"
+                                data-aos-delay="200">
+                                <i class="fa-solid fa-phone"></i>
+                                <span>01093922945</span>
+                            </a>
+                            <a href="https://facebook.com/w1Hema" target="_blank" class="social-btn facebook"
+                                data-aos="fade-left" data-aos-delay="300">
+                                <i class="fa-brands fa-facebook-f"></i>
+                                <span>w1Hema</span>
+                            </a>
+                            <a href="https://t.me/w1Hema" target="_blank" class="social-btn telegram"
+                                data-aos="fade-left" data-aos-delay="400">
+                                <i class="fa-brands fa-telegram"></i>
+                                <span>w1Hema</span>
+                            </a>
+                            <a href="https://discord.gg/w1Hema" target="_blank" class="social-btn discord"
+                                data-aos="fade-left" data-aos-delay="500">
+                                <i class="fa-brands fa-discord"></i>
+                                <span>w1Hema</span>
+                            </a>
+                            <a href="mailto:ibrahimfathyibrahim39@gmail.com" class="social-btn email"
+                                data-aos="fade-left" data-aos-delay="600">
+                                <i class="fa-solid fa-envelope"></i>
+                                <span>ibrahimfathyibrahim39@gmail.com</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="contact-form-wrapper" data-aos="fade-right" data-aos-duration="1200">
+                        <form id="contact-form" class="modern-form">
+                            <div class="input-group">
+                                <input type="text" id="name" required placeholder=" ">
+                                <label for="name">الاسم الكريم</label>
+                            </div>
+                            <div class="input-group">
+                                <input type="email" id="email" required placeholder=" ">
+                                <label for="email">البريد الإلكتروني</label>
+                            </div>
+                            <div class="input-group">
+                                <textarea id="message" rows="4" required placeholder=" "></textarea>
+                                <label for="message">تفاصيل المشروع أو الاستفسار...</label>
+                            </div>
+                            <button type="submit" class="btn btn-primary w-full btn-glow-anim">إرسال الرسالة السريعة <i
+                                    class="fa-solid fa-paper-plane"></i></button>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>التميز التقني والأمان المطلق &copy; 2026 | تطوير: <span>إبراهيم فتحي إبراهيم</span></p>
+    </footer>
+
+    <!-- AOS JS Library -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+    <!-- Three.js Engine and General Scripts -->
+    <script src="three-engine.js"></script>
+    <script src="script.js?v=5.0"></script>
+</body>
+
+</html>
